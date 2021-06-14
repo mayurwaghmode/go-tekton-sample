@@ -3,7 +3,22 @@ kind: Pipeline
 metadata:
   name: tutorial-pipeline
 spec:
+  workspaces:
+    - name: myworkspace
   tasks:
     - name: git-clone
       taskRef:
         name: git-clone
+      workspaces:
+        - name: output
+          workspace: myworkspace
+    - name: build-image
+      taskRef:
+        name: build-image
+      workspaces:
+        - name: ws
+          workspace: myworkspace
+      runAfter:
+        - git-clone
+
+

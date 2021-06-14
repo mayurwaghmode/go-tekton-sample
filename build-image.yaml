@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-image
+spec:
+  steps:
+    - name: package
+      image: alpine/git
+      command:
+        - ls
+  workspaces:
+    - name: ws
