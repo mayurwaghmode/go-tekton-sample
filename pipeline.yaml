@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: tutorial-pipeline
+spec:
+  tasks:
+    - name: git-clone
+      taskRef:
+        name: git-clone

@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: git-clone
+spec:
+  steps:
+    - name: checkout
+      image: alpine/git
+      command:
+        - git
+        - clone
+        - https://github.com/chan43999/go-tekton-sample
