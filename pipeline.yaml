@@ -6,19 +6,26 @@ spec:
   workspaces:
     - name: myworkspace
   tasks:
-    - name: git-clone
+    - name: fetch-repository
       taskRef:
         name: git-clone
       workspaces:
         - name: output
           workspace: myworkspace
-    - name: build-image
+      params:
+        - name: url
+          value: https://github.com/chan43999/go-tekton-sample
+        - name: deleteExisting
+          value: "true"
+    - name: build
       taskRef:
-        name: build-image
-      workspaces:
-        - name: ws
-          workspace: myworkspace
+        name: buildah
       runAfter:
-        - git-clone
-
+        - fetch-repository
+      params:
+        - name: IMAGE
+          value: docker.io/chan43999/my-go
+      workspaces:
+        - name: source
+          workspace: myworkspace
 
