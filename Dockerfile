@@ -1,8 +1,3 @@
-FROM golang:alpine3.13
+FROM alpine
 
-ENV GOPATH=/
-COPY . .
-
-RUN go get && go build -o app
-
-ENTRYPOINT ./app
+ENTRYPOINT echo hello medium
